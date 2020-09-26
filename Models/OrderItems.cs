@@ -70,7 +70,7 @@ namespace OrdersSpecifications.Models
                 ShippedDate =  Convert.ToDateTime("2020-07-26T19:00:00"),
                 ShipperCity = "Durango, DGO, Mexico",
                 Amount = 345,
-                IsShipped = true,
+                IsShipped = false,
             },
              new Order {
                 OrderID = 9,
@@ -78,7 +78,7 @@ namespace OrdersSpecifications.Models
                 ShippedDate =  Convert.ToDateTime("2020-06-22T19:00:00"),
                 ShipperCity = "Monterrey, NL, Mexico",
                 Amount = 221,
-                IsShipped = true,
+                IsShipped = false,
             },
             new Order {
                 OrderID = 10,
