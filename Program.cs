@@ -21,19 +21,18 @@ namespace OrdersSpecifications
             PrintList("Orders With Shipment Discount", ordersWithShippmentDiscount);
 
             var ordersWithFreeShippment = repository.GetOrders(new OrdersWithFreeShipmentSpec(500));
-            PrintList("Orders With Free Shipment", ordersWithFreeShippment);
+            PrintList("Microsoft Orders With Free Shipment", ordersWithFreeShippment);
 
-            var specMicrosoftOrdersWithShippmentDiscount = new OrderByCustomerNameSpec("Microsoft")
+            var microsoftOrdersWithShippmentDiscount = repository.GetOrders(new OrderByCustomerNameSpec("Microsoft")
                             .And(new OrdersWithShipmentDiscountSpec(300, 500))
-                            .Or(new OrdersWithFreeShipmentSpec(500));
-            var microsoftOrdersWithShippmentDiscount = repository.GetOrders(specMicrosoftOrdersWithShippmentDiscount);
-            PrintList("Microsoft Orders With ShippmentDiscount", microsoftOrdersWithShippmentDiscount);
+                            .Or(new OrdersWithFreeShipmentSpec(500)));
 
-            var specMicrosoftOrdersWithoutShippmentDiscount = new OrdersWithShipmentDiscountSpec(300, 500)
+            PrintList("Microsoft Orders With Free Shipment Or Shipment Discount", microsoftOrdersWithShippmentDiscount); 
+
+            var microsoftOrdersWithoutShippmentDiscount = repository.GetOrders(new OrdersWithShipmentDiscountSpec(300, 500)
                             .Or(new OrdersWithFreeShipmentSpec(500))
                             .Not()
                             .And(new OrderByCustomerNameSpec("Microsoft"));
-            var microsoftOrdersWithoutShippmentDiscount = repository.GetOrders(specMicrosoftOrdersWithoutShippmentDiscount);
             PrintList("Microsoft Orders Without ShippmentDiscount", microsoftOrdersWithoutShippmentDiscount);
 
             Console.ReadLine();
